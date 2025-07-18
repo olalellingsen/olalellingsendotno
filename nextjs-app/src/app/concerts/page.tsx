@@ -1,7 +1,8 @@
 import React from "react";
-import { client } from "../../../client";
+import { client, urlForImage } from "../../../client";
 import { CONCERTS_QUERY } from "@/app/queries";
 import { Concert } from "../types";
+import Image from "next/image";
 
 export default async function page() {
   const concerts = await client.fetch<Concert[]>(CONCERTS_QUERY);
@@ -26,7 +27,12 @@ export default async function page() {
               </a>
             )}
             {concert.image && (
-              <img src={concert.image.asset.url} alt={concert.band} />
+              <Image
+                src={urlForImage(concert.image).url()}
+                alt={concert.band}
+                width={800}
+                height={600}
+              />
             )}
           </div>
         ))}

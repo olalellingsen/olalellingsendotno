@@ -1,8 +1,8 @@
 import React from "react";
 import { ABOUT } from "../queries";
-import { client } from "../../../client";
+import { client, urlForImage } from "../../../client";
 import { PortableText } from "next-sanity";
-import SanityImage from "./SanityImage";
+import Image from "next/image";
 
 export default async function AboutSection() {
   const about = await client.fetch(ABOUT);
@@ -10,8 +10,8 @@ export default async function AboutSection() {
 
   return (
     <section className="max-w-4xl mx-auto p-6">
-      <SanityImage
-        src={about?.image}
+      <Image
+        src={urlForImage(about?.image).url()}
         alt="About Image"
         width={800}
         height={600}
