@@ -1,0 +1,18 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "europe-north2-docker.pkg.dev/olalellingsendotno/cloud-run-source-deploy/olalellingsendotno",
+        "--build-arg",
+        "NEXT_PUBLIC_SANITY_PROJECT_ID=1p9yaeef",
+        "--build-arg",
+        "NEXT_PUBLIC_SANITY_DATASET=production",
+        "--build-arg",
+        "NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01",
+        ".",
+      ]
+
+images:
+  - "europe-north2-docker.pkg.dev/olalellingsendotno/cloud-run-source-deploy/olalellingsendotno"
