@@ -1,28 +1,34 @@
 import React from "react";
-import { client } from "../../../../client";
+import { client } from "@/sanity/client";
 import { PROJECT_QUERY } from "@/app/queries";
 import Link from "next/link";
-import { urlForImage } from "../../../../client";
+import { PortableText } from "next-sanity";
 import Image from "next/image";
+import { urlFor } from "@/sanity/image";
+
+const options = { next: { revalidate: 30 } };
 
 export default async function page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const project = await client.fetch(PROJECT_QUERY, { slug });
+  const project = await client.fetch(PROJECT_QUERY, await params, options);
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto p-4">
       <h1>Project: {project.title}</h1>
-      <p>{project.description}</p>
+
       <Image
-        src={urlForImage(project.image).url()}
+        src={urlFor(project.image)?.url() || ""}
         alt={project.title}
         width={800}
-        height={600}
+        height={300}
       />
+
+      <div className="prose border p-4">
+        {Array.isArray(project.body) && <PortableText value={project.body} />}
+      </div>
 
       {project.members && (
         <ul className="list-disc pl-5">

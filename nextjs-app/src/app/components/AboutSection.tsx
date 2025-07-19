@@ -1,6 +1,6 @@
 import React from "react";
 import { ABOUT } from "../queries";
-import { client, urlForImage } from "../../../client";
+import { client, urlForImage } from "../../sanity/client";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 

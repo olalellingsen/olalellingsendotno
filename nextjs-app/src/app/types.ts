@@ -4,7 +4,13 @@ export type Project = {
   slug: {
     current: string;
   };
-  description: string;
+  body: Array<{
+    _type: string;
+    children: Array<{
+      _type: string;
+      text: string;
+    }>;
+  }>;
   image?: {
     asset: {
       _id: string;

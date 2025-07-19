@@ -1,5 +1,5 @@
 import React from "react";
-import { client, urlForImage } from "../../../client";
+import { client, urlForImage } from "../../sanity/client";
 import { CONCERTS_QUERY } from "@/app/queries";
 import { Concert } from "../types";
 import Image from "next/image";

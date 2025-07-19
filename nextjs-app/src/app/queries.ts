@@ -20,7 +20,7 @@ export const PROJECTS_QUERY = groq`*[_type == "projects"]{
 export const PROJECT_QUERY = groq`*[_type == "projects" && slug.current == $slug][0]{
   _id,
   title,
-  description,
+  body,
   slug {
     current
   },
