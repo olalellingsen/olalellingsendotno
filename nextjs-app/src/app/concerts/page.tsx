@@ -1,8 +1,9 @@
 import React from "react";
-import { client, urlForImage } from "../../sanity/client";
+import { client } from "@/sanity/client";
 import { CONCERTS_QUERY } from "@/app/queries";
 import { Concert } from "../types";
 import Image from "next/image";
+import { urlFor } from "@/sanity/image";
 
 export default async function page() {
   const concerts = await client.fetch<Concert[]>(CONCERTS_QUERY);
@@ -17,18 +18,9 @@ export default async function page() {
             <h2>{concert.band}</h2>
             <p>{concert.date}</p>
             <p>{concert.location}</p>
-            {concert.ticketLink && (
-              <a
-                href={concert.ticketLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Buy Tickets
-              </a>
-            )}
             {concert.image && (
               <Image
-                src={urlForImage(concert.image).url()}
+                src={urlFor(concert.image).url()}
                 alt={concert.band}
                 width={800}
                 height={600}
