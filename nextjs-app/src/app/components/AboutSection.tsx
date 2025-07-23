@@ -17,7 +17,11 @@ export default async function AboutSection() {
         height={600}
       />
 
-      <PortableText value={about?.richText} />
+      <div className="prose border p-4">
+        {Array.isArray(about.richText) && (
+          <PortableText value={about.richText} />
+        )}
+      </div>
     </section>
   );
 }

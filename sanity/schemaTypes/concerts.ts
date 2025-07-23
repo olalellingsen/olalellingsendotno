@@ -17,8 +17,9 @@ export const concerts = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'location',
-      type: 'string',
+      name: 'venue',
+      type: 'reference',
+      to: [{type: 'venues'}],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -26,20 +27,19 @@ export const concerts = defineType({
       title: 'Ticket Link',
       type: 'url',
     }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
   ],
   preview: {
     select: {
       title: 'band',
       date: 'date',
-      location: 'location',
+      venue: 'venue',
+    },
+    prepare(selection) {
+      const {title, date} = selection
+      return {
+        title: title,
+        subtitle: `${new Date(date).toLocaleDateString()}`,
+      }
     },
   },
 })
