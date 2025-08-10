@@ -15,6 +15,15 @@ export type Project = {
     asset: {
       _id: string;
       url: string;
+      metadata?: {
+        palette?: {
+          darkMuted?: {
+            background: string;
+            foreground: string;
+            population: number;
+          };
+        };
+      };
     };
   };
   spotifyLink: string;

@@ -16,7 +16,7 @@ export default async function page({
   const project = await client.fetch(PROJECT_QUERY, await params, options);
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
+    <main>
       <h1>Project: {project.title}</h1>
 
       <Image
@@ -40,6 +40,6 @@ export default async function page({
       <Link href={project.spotifyLink ? project.spotifyLink : "#"}>
         Listen on Spotify
       </Link>
-    </div>
+    </main>
   );
 }

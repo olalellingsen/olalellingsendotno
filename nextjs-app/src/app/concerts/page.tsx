@@ -10,7 +10,7 @@ export default async function page() {
   console.log("Concerts:", concerts);
 
   return (
-    <section>
+    <main>
       <h1>Concerts</h1>
       <div>
         {concerts.map((concert) => (
@@ -29,6 +29,6 @@ export default async function page() {
           </div>
         ))}
       </div>
-    </section>
+    </main>
   );
 }

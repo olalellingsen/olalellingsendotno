@@ -1,6 +1,7 @@
 import groq from "groq";
 
-export const PROJECTS_QUERY = groq`*[_type == "projects"]{
+export const PROJECTS_QUERY = groq`
+*[_type == "projects"]{
   _id,
   title,
   description,
@@ -10,7 +11,8 @@ export const PROJECTS_QUERY = groq`*[_type == "projects"]{
   image {
     asset -> {
       _id,
-      url
+      url,
+      metadata
     }
   },
   spotifyLink,
