@@ -1,7 +1,6 @@
 import React from "react";
 import { client } from "@/sanity/client";
 import { PROJECT_QUERY } from "@/app/queries";
-import Link from "next/link";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/image";
