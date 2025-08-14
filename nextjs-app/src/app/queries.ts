@@ -29,17 +29,25 @@ export const PROJECT_QUERY = groq`*[_type == "projects" && slug.current == $slug
   image {
     asset -> {
       _id,
-      url
+      url,
+      metadata
     }
   },
   spotifyLink,
-  members
+  concerts[]->{
+    _id,
+    band,
+    date,
+    location,
+    ticketLink,
+  }
 }`;
 
 export const CONCERTS_QUERY = groq`*[_type == "concerts"]|order(date asc){
   _id,
   band,
   date,
+  time,
   location,
   ticketLink,
   image {

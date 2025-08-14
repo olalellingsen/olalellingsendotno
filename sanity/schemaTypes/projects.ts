@@ -19,17 +19,6 @@ export const projects = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
-    defineField({
-      name: 'members',
-      title: 'Project Members',
-      type: 'array',
-      of: [{type: 'string'}],
-    }),
-    defineField({
       name: 'image',
       title: 'Project Image',
       type: 'image',
@@ -37,6 +26,27 @@ export const projects = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'body',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'concerts',
+      title: 'Upcoming Concerts',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'concerts'}],
+          options: {
+            filter: 'date >= now()',
+          },
+        },
+      ],
+      validation: (rule) => rule.unique(),
+    }),
+
     defineField({
       name: 'spotifyLink',
       title: 'Spotify Link',

@@ -13,14 +13,19 @@ export const concerts = defineType({
     }),
     defineField({
       name: 'date',
-      type: 'datetime',
+      type: 'date',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'time',
+      title: 'Concert Time',
+      type: 'string',
+      description: 'Time of the concert in HH:MM format or TBA',
     }),
     defineField({
       name: 'venue',
       type: 'reference',
       to: [{type: 'venues'}],
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'ticketLink',
@@ -35,10 +40,10 @@ export const concerts = defineType({
       venue: 'venue',
     },
     prepare(selection) {
-      const {title, date} = selection
+      const {title, date, venue} = selection
       return {
         title: title,
-        subtitle: `${new Date(date).toLocaleDateString()}`,
+        subtitle: `${new Date(date).toLocaleDateString()} - ${venue?.title || 'Unknown Venue'}`,
       }
     },
   },

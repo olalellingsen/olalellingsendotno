@@ -16,6 +16,7 @@ export type Project = {
       _id: string;
       url: string;
       metadata?: {
+        lqip: string;
         palette?: {
           darkMuted?: {
             background: string;
@@ -27,13 +28,14 @@ export type Project = {
     };
   };
   spotifyLink: string;
-  members: string[];
+  concerts: Concert[];
 };
 
 export type Concert = {
   _id: string;
   band: string;
   date: string; // ISO date string
+  time?: string; // Optional, can be HH:MM format or TBA
   location: string;
   ticketLink?: string;
   image?: {

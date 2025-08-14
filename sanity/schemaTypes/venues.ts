@@ -16,7 +16,6 @@ export const venues = defineType({
       title: 'Location Link',
       description: 'Link to the venue on Google Maps or similar',
       type: 'url',
-      validation: (rule) => rule.required(),
     }),
   ],
 })
