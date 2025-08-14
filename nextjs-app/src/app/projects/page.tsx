@@ -13,10 +13,8 @@ export default async function page() {
     <main>
       <h1>Projects</h1>
 
-      <ul className="w-full py-4 flex flex-row gap-4 overflow-auto snap-x snap-mandatory scroll-smooth no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="w-full py-4 flex flex-row gap-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar lg:grid lg:grid-cols-3">
         {projects.map((project) => {
-          const textColor =
-            project.image?.asset.metadata?.palette?.darkMuted?.foreground;
           return (
             <Link
               key={project._id}
@@ -31,16 +29,11 @@ export default async function page() {
                   height={800}
                   placeholder="blur"
                   blurDataURL={project.image?.asset.metadata?.lqip || ""}
-                  className="aspect-square object-cover rounded-3xl opacity-100 group-hover:opacity-50"
+                  className="aspect-square object-cover rounded-2xl group-hover:opacity-80 transition-opacity duration-300"
                 />
               )}
 
-              <h2
-                style={{ color: textColor }}
-                className="xl:opacity-0 group-hover:opacity-100 xl:absolute bottom-0 left-4 p-2"
-              >
-                {project.title}
-              </h2>
+              <h2 className="p-2 group-hover:underline">{project.title}</h2>
             </Link>
           );
         })}

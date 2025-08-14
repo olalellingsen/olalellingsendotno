@@ -37,7 +37,7 @@ body {
 }
 
 main {
-  @apply max-w-5xl mx-auto px-4 py-8 grow;
+  @apply container mx-auto px-4 py-8 grow;
 }
 
 h1 {
@@ -46,4 +46,8 @@ h1 {
 
 h2 {
   @apply text-3xl mb-3;
+}
+
+h3 {
+  @apply text-xl mb-2;
 }

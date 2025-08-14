@@ -6,6 +6,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/image";
 import { Project } from "../../types";
 import Button from "../../components/Button";
+import { ConcertCard } from "@/app/components/ConcertCard";
 
 const options = { next: { revalidate: 30 } };
 
@@ -19,7 +20,6 @@ export default async function page({
     await params,
     options
   );
-  console.log("Project data:", project);
 
   return (
     <main>
@@ -29,33 +29,26 @@ export default async function page({
           alt={project.title}
           width={800}
           height={300}
+          className="w-full aspect-square md:aspect-video object-cover rounded-3xl"
           placeholder="blur"
           blurDataURL={project.image?.asset.metadata?.lqip || ""}
         />
       )}
 
-      <h1>{project.title}</h1>
+      <h1 className="p-4">{project.title}</h1>
 
       {project.body && (
-        <section className="prose border p-4">
+        <section className="prose p-4">
           {Array.isArray(project.body) && <PortableText value={project.body} />}
         </section>
       )}
 
       {project.concerts && (
-        <section>
-          <h2>Upcoming concerts</h2>
-          <ul>
+        <section className="p-4">
+          <h2>Upcoming concerts with {project.title}</h2>
+          <ul className="space-y-4">
             {project.concerts.map((concert) => (
-              <li key={concert._id}>
-                <h3>{concert.band}</h3>
-                <p>{new Date(concert.date).toLocaleDateString()}</p>
-                <p>{concert.location}</p>
-
-                <Button href={concert.ticketLink || "#"} variant="outline">
-                  Tickets
-                </Button>
-              </li>
+              <ConcertCard key={concert._id} concert={concert} />
             ))}
           </ul>
         </section>
