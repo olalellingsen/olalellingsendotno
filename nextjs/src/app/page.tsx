@@ -1,15 +1,13 @@
-import React from "react";
-import { ABOUT } from "../queries";
-import { client, urlForImage } from "../../sanity/client";
+import { ABOUT } from "./queries";
+import { client, urlForImage } from "../sanity/client";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 
-export default async function AboutSection() {
+export default async function IndexPage() {
   const about = await client.fetch(ABOUT);
-  console.log("About Section Data:", about);
 
   return (
-    <section className="max-w-4xl mx-auto p-6">
+    <main>
       <Image
         src={urlForImage(about?.image).url()}
         alt="About Image"
@@ -22,6 +20,6 @@ export default async function AboutSection() {
           <PortableText value={about.richText} />
         )}
       </div>
-    </section>
+    </main>
   );
 }

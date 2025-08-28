@@ -73,3 +73,24 @@ export const ABOUT = groq`*[_type == "about"][0]{
     url
   }
 }`;
+
+export const ALBUMS_QUERY = groq`*[_type == "albums"]{
+  _id,
+  title,
+  artist,
+  releaseDate,
+  coverArt,
+  trackList,
+  personnel,
+  spotifyLink,
+  description
+}`;
+
+export const SINGLES_QUERY = groq`*[_type == "singles"]{
+  _id,
+  title,
+  artist,
+  releaseDate,
+  coverArt,
+  spotifyLink
+}`;

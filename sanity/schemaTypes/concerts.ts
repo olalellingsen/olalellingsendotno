@@ -37,13 +37,13 @@ export const concerts = defineType({
     select: {
       title: 'band',
       date: 'date',
-      venue: 'venue',
+      venue: 'venue.name',
     },
     prepare(selection) {
       const {title, date, venue} = selection
       return {
         title: title,
-        subtitle: `${new Date(date).toLocaleDateString()} - ${venue?.title || 'Unknown Venue'}`,
+        subtitle: `${new Date(date).toLocaleDateString()} - ${venue || 'Venue not specified'}`,
       }
     },
   },

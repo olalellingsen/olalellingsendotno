@@ -11,9 +11,11 @@ export const ConcertCard = ({ concert }: { concert: Concert }) => {
         <p>{concert.location}</p>
       </div>
 
-      <Button href={concert.ticketLink || "#"} variant="outline">
-        Tickets
-      </Button>
+      {concert.ticketLink && (
+        <Button href={concert.ticketLink} variant="outline">
+          Tickets
+        </Button>
+      )}
     </li>
   );
 };
