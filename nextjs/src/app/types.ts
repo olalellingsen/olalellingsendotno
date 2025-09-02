@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/react";
+
 export type Project = {
   _id: string;
   title: string;
@@ -44,4 +46,32 @@ export type Concert = {
       url: string;
     };
   };
+};
+
+export type HomePage = {
+  _id: string;
+  title: string;
+  richText: Array<{
+    _type: string;
+    children: Array<{
+      _type: string;
+      text: string;
+    }>;
+  }>;
+  image?: {
+    asset: {
+      _id: string;
+      url: string;
+    };
+  };
+  socialLinks: Array<{
+    platform: string;
+    url: string;
+  }>;
+};
+
+// Rich text block type
+export type RichTextBlock = {
+  _type: "richText";
+  content: PortableTextBlock[];
 };

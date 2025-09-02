@@ -43,3 +43,7 @@ h2 {
 h3 {
   @apply text-xl mb-2;
 }
+
+.richText {
+  @apply prose prose-headings:text-foreground prose-headings:font-light prose-p:text-foreground prose-blockquote:text-foreground;
+}

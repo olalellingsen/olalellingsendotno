@@ -50,24 +50,13 @@ export const CONCERTS_QUERY = groq`*[_type == "concerts"]|order(date asc){
   time,
   location,
   ticketLink,
-  image {
-    asset -> {
-      _id,
-      url
-    }
-    }   
 }`;
 
-export const ABOUT = groq`*[_type == "about"][0]{
+export const HOME_QUERY = groq`*[_type == "home"][0]{
   _id,
   title,
   richText,
-  image {
-    asset -> {
-      _id,
-      url
-    }
-  },
+  image,
   socialLinks {
     platform,
     url
