@@ -10,13 +10,14 @@ export default async function IndexPage() {
 
   return (
     <main className="flex flex-col items-center">
-      <header>
+      <header className="h-[90vh]">
         {home.image && (
           <Image
             src={urlForImage(home?.image).url()}
             alt="Home Image"
             width={800}
             height={600}
+            className="pt-20 sm:pt-0"
           />
         )}
       </header>
@@ -27,7 +28,7 @@ export default async function IndexPage() {
         />
 
         <iframe
-          className="w-full h-96"
+          className="w-full h-[500px]"
           data-testid="embed-iframe"
           src="https://open.spotify.com/embed/artist/4NZ0fCPxiuIaEHw9kUgURe?utm_source=generator&theme=0"
           frameBorder="0"

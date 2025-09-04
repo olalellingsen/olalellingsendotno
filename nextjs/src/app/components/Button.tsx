@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "default" | "outline" | "ghost" | "link";
+  variant?: "default" | "outline" | "link";
   size?: "sm" | "md" | "lg";
   href?: string;
   external?: boolean;
@@ -15,10 +15,10 @@ interface ButtonProps {
 }
 
 const buttonVariants = {
-  default: "bg-blue-500 text-white hover:bg-blue-600",
-  outline: "border border-gray-300 bg-transparent hover:bg-gray-100",
-  ghost: "bg-transparent hover:bg-gray-100",
-  link: "text-blue-500 hover:underline bg-transparent p-0 h-auto",
+  default: "bg-foreground text-background hover:bg-gray-300",
+  outline: "border border-gray-300 bg-transparent hover:bg-gray-900",
+
+  link: "hover:underline bg-transparent p-0 h-auto",
 };
 
 const buttonSizes = {
@@ -39,7 +39,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50";
+    "inline-flex items-center justify-center rounded font-medium h-max w-max hover:cursor-pointer";
 
   const variantClasses = buttonVariants[variant];
   const sizeClasses = variant === "link" ? "" : buttonSizes[size];
@@ -67,7 +67,7 @@ export default function Button({
     }
 
     return (
-      <Link href={href} className={combinedClasses}>
+      <Link href={href} target="_blank" className={combinedClasses}>
         {children}
       </Link>
     );

@@ -37,15 +37,12 @@ export type Concert = {
   _id: string;
   band: string;
   date: string; // ISO date string
-  time?: string; // Optional, can be HH:MM format or TBA
-  location: string;
-  ticketLink?: string;
-  image?: {
-    asset: {
-      _id: string;
-      url: string;
-    };
+  time?: string;
+  venue?: {
+    name: string;
+    locationLink: string;
   };
+  ticketLink?: string;
 };
 
 export type HomePage = {

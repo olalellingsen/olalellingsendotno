@@ -43,12 +43,15 @@ export const PROJECT_QUERY = groq`*[_type == "projects" && slug.current == $slug
   }
 }`;
 
-export const CONCERTS_QUERY = groq`*[_type == "concerts"]|order(date asc){
+export const CONCERTS_QUERY = groq`*[_type == "concerts"] | order(date asc){
   _id,
   band,
   date,
   time,
-  location,
+  venue->{
+    name,
+    locationLink
+  },
   ticketLink,
 }`;
 

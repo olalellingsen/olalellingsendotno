@@ -48,7 +48,7 @@ export default async function page({
           <h2>Upcoming concerts with {project.title}</h2>
           <ul className="space-y-4">
             {project.concerts.map((concert) => (
-              <ConcertCard key={concert._id} concert={concert} />
+              <ConcertCard key={concert._id} concert={concert} upcoming={true} />
             ))}
           </ul>
         </section>

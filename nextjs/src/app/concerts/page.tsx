@@ -2,31 +2,47 @@ import React from "react";
 import { client } from "@/sanity/client";
 import { CONCERTS_QUERY } from "@/app/queries";
 import { Concert } from "../types";
-import Image from "next/image";
-import { urlFor } from "@/sanity/image";
+import { ConcertCard } from "../components/ConcertCard";
 
 export default async function page() {
-  const concerts = await client.fetch<Concert[]>(CONCERTS_QUERY);
+  const allConcerts = await client.fetch<Concert[]>(CONCERTS_QUERY);
+
+  // Normalize today's date to midnight for date-only comparison
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcomingConcerts = allConcerts
+    .filter((concert) => {
+      if (!concert.date) return false;
+      const concertDate = new Date(concert.date);
+      concertDate.setHours(0, 0, 0, 0);
+      return concertDate >= today;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()); // soonest first
+
+  const pastConcerts = allConcerts
+    .filter((concert) => {
+      if (!concert.date) return false;
+      const concertDate = new Date(concert.date);
+      concertDate.setHours(0, 0, 0, 0);
+      return concertDate < today;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); // most recent first
 
   return (
     <main>
       <h1>Concerts</h1>
+      <h2>Upcoming Concerts</h2>
       <ul>
-        {concerts.map((concert) => (
-          <li key={concert._id}>
-            <h2>{concert.band}</h2>
-            <p>{new Date(concert.date).toLocaleDateString()}</p>
-            {concert.time && <p>Time: {concert.time}</p>}
-            <p>{concert.location}</p>
-            {concert.image && (
-              <Image
-                src={urlFor(concert.image).url()}
-                alt={concert.band}
-                width={800}
-                height={600}
-              />
-            )}
-          </li>
+        {upcomingConcerts.map((concert) => (
+          <ConcertCard key={concert._id} concert={concert} upcoming={true} />
+        ))}
+      </ul>
+      <br />
+      <h2>Past Concerts</h2>
+      <ul>
+        {pastConcerts.map((concert) => (
+          <ConcertCard key={concert._id} concert={concert} upcoming={false} />
         ))}
       </ul>
     </main>
