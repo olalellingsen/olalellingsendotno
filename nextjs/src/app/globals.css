@@ -28,8 +28,8 @@ body {
   color: var(--foreground);
 }
 
-main {
-  @apply container mx-auto px-4 py-8 grow;
+.content {
+  @apply max-w-7xl mx-auto px-2 sm:px-4;
 }
 
 h1 {
@@ -37,13 +37,13 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl mb-3;
+  @apply text-4xl mb-3;
 }
 
 h3 {
-  @apply text-xl mb-2;
+  @apply text-2xl mb-1;
 }
 
 .richText {
-  @apply prose prose-headings:text-foreground prose-headings:font-light prose-p:text-foreground prose-blockquote:text-foreground;
+  @apply prose lg:prose-lg prose-headings:text-foreground prose-headings:font-light prose-p:text-foreground prose-blockquote:text-foreground;
 }

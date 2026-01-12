@@ -19,6 +19,11 @@ export const projects = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Order of Appearance',
+      type: 'number',
+    }),
+    defineField({
       name: 'image',
       title: 'Project Image',
       type: 'image',
@@ -32,22 +37,6 @@ export const projects = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
-      name: 'concerts',
-      title: 'Upcoming Concerts',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'concerts'}],
-          options: {
-            filter: 'date >= now()',
-          },
-        },
-      ],
-      validation: (rule) => rule.unique(),
-    }),
-
-    defineField({
       name: 'spotifyLink',
       title: 'Spotify Link',
       type: 'url',
@@ -58,6 +47,14 @@ export const projects = defineType({
     select: {
       title: 'title',
       media: 'image',
+      order: 'order',
     },
   },
+  orderings: [
+    {
+      title: 'Order',
+      name: 'orderAsc',
+      by: [{field: 'order', direction: 'asc'}],
+    },
+  ],
 })

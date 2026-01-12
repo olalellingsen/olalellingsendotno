@@ -30,7 +30,6 @@ export type Project = {
     };
   };
   spotifyLink: string;
-  concerts: Concert[];
 };
 
 export type Concert = {
@@ -43,6 +42,26 @@ export type Concert = {
     locationLink: string;
   };
   ticketLink?: string;
+};
+
+export type Album = {
+  _id: string;
+  title: string;
+  artist: {
+    title: string;
+    slug: {
+      current: string;
+    };
+  };
+  otherArtist?: string;
+  releaseDate: string;
+  coverArt?: {
+    asset: {
+      _id: string;
+      url: string;
+    };
+  };
+  streamingLink: string;
 };
 
 export type HomePage = {

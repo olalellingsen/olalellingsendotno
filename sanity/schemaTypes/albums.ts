@@ -11,6 +11,18 @@ export const albums = defineType({
       title: 'Title',
     }),
     defineField({
+      name: 'artist',
+      type: 'reference',
+      to: [{type: 'projects'}],
+      title: 'Artist / Project',
+    }),
+    defineField({
+      name: 'otherArtist',
+      type: 'string',
+      title: 'Other Artist Name',
+      description: 'Use this field if the artist is not in the Projects collection',
+    }),
+    defineField({
       name: 'releaseDate',
       type: 'date',
       title: 'Release Date',
@@ -24,26 +36,32 @@ export const albums = defineType({
       },
     }),
     defineField({
-      name: 'spotifyLink',
+      name: 'streamingLink',
       type: 'string',
-      title: 'Spotify Link',
-    }),
-    defineField({
-      name: 'trackList',
-      type: 'array',
-      title: 'Track List',
-      of: [{type: 'string'}],
-    }),
-    defineField({
-      name: 'personnel',
-      type: 'array',
-      title: 'Personnel',
-      of: [{type: 'string'}],
-    }),
-    defineField({
-      name: 'description',
-      type: 'text',
-      title: 'Description',
+      title: 'Streaming Link',
     }),
   ],
+  orderings: [
+    {
+      title: 'Release Date',
+      name: 'releaseDateDesc',
+      by: [{field: 'releaseDate', direction: 'desc'}],
+    },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      artist: 'artist.title',
+      otherArtist: 'otherArtist',
+      coverArt: 'coverArt',
+    },
+    prepare(selection) {
+      const {title, artist, coverArt} = selection
+      return {
+        title: title,
+        subtitle: artist ? `by ${artist}` : `${selection.otherArtist}`,
+        media: coverArt,
+      }
+    },
+  },
 })

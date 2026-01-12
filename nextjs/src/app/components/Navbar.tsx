@@ -30,10 +30,16 @@ function Navbar() {
   }, [isOpen]);
 
   return (
-    <>
-      <nav className="h-16 sm:h-20 p-2 sm:px-4 flex justify-center w-full">
+    <header className="h-16 sm:h-20 p-2 sm:px-4 flex justify-between w-full">
+      <Link href={"/"} className="hover:cursor-pointer">
+        <h2>Ola Lømo Ellingsen</h2>
+        <p className={`p-0 text-sm -translate-y-3`}>
+          Trumpet player | Composer
+        </p>
+      </Link>
+      <nav>
         <ul
-          className={`hidden md:flex w-max gap-12 m-4 text-lg hover:text-stone-400
+          className={`hidden md:flex w-max gap-10 m-4 text-lg hover:text-stone-400
           } `}
         >
           {menuItems.map((item) => (
@@ -74,7 +80,7 @@ function Navbar() {
           </div>
         )}
       </nav>
-    </>
+    </header>
   );
 }
 

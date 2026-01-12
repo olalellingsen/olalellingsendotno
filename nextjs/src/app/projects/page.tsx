@@ -10,10 +10,10 @@ export default async function page() {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY);
 
   return (
-    <main>
+    <article className="content">
       <h1>Projects</h1>
 
-      <ul className="w-full py-4 flex flex-row gap-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar lg:grid lg:grid-cols-3">
+      <ul className="w-full flex flex-row gap-4 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth no-scrollbar lg:grid lg:grid-cols-3">
         {projects.map((project) => {
           return (
             <Link
@@ -29,15 +29,15 @@ export default async function page() {
                   height={800}
                   placeholder="blur"
                   blurDataURL={project.image?.asset.metadata?.lqip || ""}
-                  className="aspect-square object-cover rounded-2xl group-hover:opacity-80 transition-opacity duration-300"
+                  className="aspect-3/4 lg:aspect-square object-cover rounded-2xl group-hover:opacity-80 transition-opacity duration-300"
                 />
               )}
 
-              <h2 className="p-2 group-hover:underline">{project.title}</h2>
+              <h3 className="p-2 group-hover:underline">{project.title}</h3>
             </Link>
           );
         })}
       </ul>
-    </main>
+    </article>
   );
 }

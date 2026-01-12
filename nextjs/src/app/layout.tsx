@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${robotoCondensed.variable} ${robotoMono.variable} font-light antialiased flex flex-col min-h-screen`}
       >
         <Navbar />
-        {children}
+        <main className="flex-grow py-8">{children}</main>
         <Footer />
       </body>
     </html>

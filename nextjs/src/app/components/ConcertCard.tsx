@@ -9,25 +9,43 @@ interface ConcertCardProps {
 
 export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
   return (
-    <li className="px-2 py-4">
-      <div className="flex justify-between">
-        <div>
-          <p>{new Date(concert.date).toLocaleDateString()}</p>
-          <h3 className="font-bold">{concert.band}</h3>
-        </div>
-        {concert.ticketLink && upcoming && (
-          <Button href={concert.ticketLink}>Tickets</Button>
+    <li
+      className="
+        border-b border-foreground/20 py-4
+        grid lg:grid-cols-10 lg:items-center
+      "
+    >
+      <div className="font-medium">
+        {new Date(concert.date).toLocaleDateString()}
+      </div>
+
+      <div className="text-gray-500">
+        {concert.time ? `${concert.time}` : ""}
+      </div>
+
+      <div className="font-medium lg:col-span-5 mr-20 lg:mr-0">
+        {concert.band}
+      </div>
+
+      <div className="lg:col-span-2">
+        {concert.venue?.locationLink ? (
+          <Button href={concert.venue.locationLink} variant="link">
+            {concert.venue.name}
+          </Button>
+        ) : (
+          <p>{concert.venue?.name}</p>
         )}
       </div>
 
-      {concert.venue?.locationLink ? (
-        <Button href={concert.venue?.locationLink} variant="link">
-          {concert.venue?.name}
+      {concert.ticketLink && upcoming && (
+        <Button
+          size="sm"
+          className="justify-self-end absolute lg:relative"
+          href={concert.ticketLink}
+        >
+          Tickets
         </Button>
-      ) : (
-        <p>{concert.venue?.name}</p>
       )}
-      <hr className="mt-2" />
     </li>
   );
 };

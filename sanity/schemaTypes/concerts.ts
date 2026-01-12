@@ -12,6 +12,12 @@ export const concerts = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'project',
+      title: 'Associated Project',
+      type: 'reference',
+      to: [{type: 'projects'}],
+    }),
+    defineField({
       name: 'date',
       type: 'date',
       validation: (rule) => rule.required(),
@@ -47,4 +53,11 @@ export const concerts = defineType({
       }
     },
   },
+  orderings: [
+    {
+      title: 'Date',
+      name: 'dateAsc',
+      by: [{field: 'date', direction: 'desc'}],
+    },
+  ],
 })

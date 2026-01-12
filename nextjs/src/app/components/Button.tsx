@@ -17,7 +17,6 @@ interface ButtonProps {
 const buttonVariants = {
   default: "bg-foreground text-background hover:bg-gray-300",
   outline: "border border-gray-300 bg-transparent hover:bg-gray-900",
-
   link: "hover:underline bg-transparent p-0 h-auto",
 };
 
@@ -39,7 +38,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded font-medium h-max w-max hover:cursor-pointer";
+    "inline-flex items-center justify-center rounded-full font-medium h-max w-max hover:cursor-pointer block";
 
   const variantClasses = buttonVariants[variant];
   const sizeClasses = variant === "link" ? "" : buttonSizes[size];
