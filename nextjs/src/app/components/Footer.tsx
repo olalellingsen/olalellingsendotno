@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import SpotifyIcon from "@/../public/spotify-icon.png";
+import Image from "next/image";
 
 // Map platform names to icons
 const platformIcons: Record<string, LucideIcon> = {
@@ -69,7 +70,7 @@ export default async function Footer() {
                   aria-label={link.platform}
                 >
                   {isSpotify ? (
-                    <img
+                    <Image
                       src={SpotifyIcon.src}
                       alt="Spotify"
                       width={24}

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
 
 interface ButtonProps {
   children: React.ReactNode;

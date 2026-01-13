@@ -5,7 +5,6 @@ import {
   PROJECT_QUERY,
   PROJECT_UPCOMING_CONCERTS_QUERY,
 } from "@/app/queries";
-import { PortableText } from "next-sanity";
 import Image from "next/image";
 import { Album, Concert, Project } from "../../types";
 import Button from "../../components/Button";
@@ -13,17 +12,19 @@ import { ConcertCard } from "@/app/components/ConcertCard";
 import Link from "next/link";
 import PortableTextSection from "@/app/components/PortableTextSection";
 
-const options = { next: { revalidate: 30 } };
-
-export default async function page({ params }: { params: { slug: string } }) {
-  const project = await client.fetch<Project>(PROJECT_QUERY, params, options);
+export default async function page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = await client.fetch<Project>(PROJECT_QUERY, { slug });
   if (!project) {
     return <div>Project not found</div>;
   }
   const upcomingConcerts = await client.fetch<Concert[]>(
     PROJECT_UPCOMING_CONCERTS_QUERY,
-    { projectId: project._id },
-    options
+    { projectId: project._id }
   );
 
   const projectAlbums = await client.fetch<Album[]>(PROJECT_ALBUMS_QUERY, {

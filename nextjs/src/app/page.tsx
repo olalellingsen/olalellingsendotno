@@ -4,7 +4,6 @@ import Image from "next/image";
 import { HomePage } from "./types";
 import PortableTextSection from "./components/PortableTextSection";
 import InstagramComponent from "./components/InstagramComponent";
-import Link from "next/link";
 import Button from "./components/Button";
 
 export default async function IndexPage() {
