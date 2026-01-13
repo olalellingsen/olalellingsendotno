@@ -2,6 +2,8 @@ import Image from "next/image";
 import { urlForImage } from "@/sanity/client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { RichTextBlock } from "../types";
+import Button from "./Button";
+import { ExternalLink } from "lucide-react";
 
 // Type for image values in portable text
 type ImageValue = {
@@ -41,6 +43,14 @@ const stylings: PortableTextComponents = {
     normal: ({ children }) => <p>{children}</p>,
     blockquote: ({ children }) => <blockquote>{children}</blockquote>,
   },
+  list: {
+    bullet: ({ children }) => <ul className="list-disc ml-3">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal ml-3">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="text-foreground">{children}</li>,
+    number: ({ children }) => <li className="text-foreground">{children}</li>,
+  },
   marks: {
     strong: ({ children }) => (
       <strong className="font-semibold">{children}</strong>
@@ -53,14 +63,14 @@ const stylings: PortableTextComponents = {
       children: React.ReactNode;
       value?: MarkValue;
     }) => (
-      <a
+      <Button
         href={value?.href || "#"}
-        className="text-blue-600 hover:text-blue-800 underline"
-        target="_blank"
-        rel="noopener noreferrer"
+        variant="link"
+        className="text-foreground inline-flex"
       >
         {children}
-      </a>
+        <ExternalLink className="ml-1 mt-1 size-4" />
+      </Button>
     ),
   },
 };
@@ -70,9 +80,12 @@ export default function PortableTextSection({
 }: {
   content: RichTextBlock;
 }) {
+  // Handle both RichTextBlock format and direct array of blocks
+  const blocks = Array.isArray(content) ? content : content.content;
+
   return (
-    <div className="richText">
-      <PortableText value={content.content} components={stylings} />
+    <div className="prose lg:prose-lg max-w-none prose-headings:text-foreground prose-headings:font-light prose-p:text-foreground prose-blockquote:text-foreground prose-strong:text-foreground">
+      <PortableText value={blocks} components={stylings} />
     </div>
   );
 }

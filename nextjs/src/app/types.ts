@@ -1,4 +1,8 @@
 import { PortableTextBlock } from "@portabletext/react";
+import {
+  SanityImageObject,
+  SanityImageSource,
+} from "@sanity/image-url/lib/types/types";
 
 export type Project = {
   _id: string;
@@ -13,22 +17,7 @@ export type Project = {
       text: string;
     }>;
   }>;
-  image?: {
-    asset: {
-      _id: string;
-      url: string;
-      metadata?: {
-        lqip: string;
-        palette?: {
-          darkMuted?: {
-            background: string;
-            foreground: string;
-            population: number;
-          };
-        };
-      };
-    };
-  };
+  image?: SanityImageObject;
   spotifyLink: string;
 };
 
@@ -55,12 +44,7 @@ export type Album = {
   };
   otherArtist?: string;
   releaseDate: string;
-  coverArt?: {
-    asset: {
-      _id: string;
-      url: string;
-    };
-  };
+  coverArt?: SanityImageSource;
   streamingLink: string;
 };
 
@@ -74,12 +58,7 @@ export type HomePage = {
       text: string;
     }>;
   }>;
-  image?: {
-    asset: {
-      _id: string;
-      url: string;
-    };
-  };
+  image?: SanityImageObject;
   socialLinks: Array<{
     platform: string;
     url: string;
@@ -90,4 +69,13 @@ export type HomePage = {
 export type RichTextBlock = {
   _type: "richText";
   content: PortableTextBlock[];
+};
+
+export type Footer = {
+  contactEmail: string;
+  contactPhone: string;
+  socialLinks: Array<{
+    platform: string;
+    url: string;
+  }>;
 };

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -41,7 +42,8 @@ export default function Button({
     "inline-flex items-center justify-center rounded-full font-medium h-max w-max hover:cursor-pointer block";
 
   const variantClasses = buttonVariants[variant];
-  const sizeClasses = variant === "link" ? "" : buttonSizes[size];
+  const sizeClasses =
+    variant === "link" ? "underline hover:no-underline" : buttonSizes[size];
 
   const combinedClasses = cn(
     baseClasses,

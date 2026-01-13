@@ -56,7 +56,7 @@ function Navbar() {
           <Menu size={50} strokeWidth={1} />
         </div>
         {isOpen && (
-          <div className="fixed md:hidden top-0 left-0 w-screen h-screen bg-background">
+          <div className="fixed md:hidden top-0 left-0 w-screen h-screen bg-background z-50">
             {/* logo and cross */}
             <div className="h-20 sm:h-24 p-2 flex justify-between w-full">
               <div className="w-full flex justify-end">

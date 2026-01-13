@@ -27,8 +27,6 @@ export default async function page() {
                   alt={project.title}
                   width={1200}
                   height={800}
-                  placeholder="blur"
-                  blurDataURL={project.image?.asset.metadata?.lqip || ""}
                   className="aspect-3/4 lg:aspect-square object-cover rounded-2xl group-hover:opacity-80 transition-opacity duration-300"
                 />
               )}

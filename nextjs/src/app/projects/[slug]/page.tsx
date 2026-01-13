@@ -7,9 +7,11 @@ import {
 } from "@/app/queries";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
-import { Concert, Project } from "../../types";
+import { Album, Concert, Project } from "../../types";
 import Button from "../../components/Button";
 import { ConcertCard } from "@/app/components/ConcertCard";
+import Link from "next/link";
+import PortableTextSection from "@/app/components/PortableTextSection";
 
 const options = { next: { revalidate: 30 } };
 
@@ -24,7 +26,7 @@ export default async function page({ params }: { params: { slug: string } }) {
     options
   );
 
-  const projectAlbums = await client.fetch<Project[]>(PROJECT_ALBUMS_QUERY, {
+  const projectAlbums = await client.fetch<Album[]>(PROJECT_ALBUMS_QUERY, {
     projectId: project._id,
   });
 
@@ -35,26 +37,25 @@ export default async function page({ params }: { params: { slug: string } }) {
           src={urlForImage(project.image).url()}
           alt={project.title}
           width={1200}
-          height={400}
+          height={600}
           className="w-full aspect-square md:aspect-5/2 object-cover"
         />
       )}
 
-      <article className="space-y-8 py-2">
+      <article className="space-y-12 py-2">
         <h1>{project.title}</h1>
 
         {project.body && (
-          <section className="prose">
-            {Array.isArray(project.body) && (
-              <PortableText value={project.body} />
-            )}
+          <section>
+            <PortableTextSection
+              content={{ _type: "richText", content: project.body }}
+            />
           </section>
         )}
-
         {upcomingConcerts.length > 0 && (
           <section>
-            <h3>Upcoming concerts with {project.title}</h3>
-            <ul className="space-y-4">
+            <h2>Upcoming concerts</h2>
+            <ul>
               {upcomingConcerts.map((concert) => (
                 <ConcertCard
                   key={concert._id}
@@ -68,11 +69,26 @@ export default async function page({ params }: { params: { slug: string } }) {
 
         {projectAlbums.length > 0 && (
           <section>
-            <h3>Albums by {project.title}</h3>
-            <ul className="space-y-4">
+            <h2>Albums</h2>
+            <ul className="space-y-4 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
               {projectAlbums.map((album) => (
-                <li key={album._id}>
-                  <h3>{album.title}</h3>
+                <li key={album._id} className="group">
+                  <Link
+                    href={album.streamingLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <p className="font-bold sm:text-lg">{album.title}</p>
+                    {album.coverArt && (
+                      <Image
+                        src={urlForImage(album.coverArt).url()}
+                        alt={album.title}
+                        width={400}
+                        height={400}
+                        className="group-hover:opacity-80 transition"
+                      />
+                    )}
+                  </Link>
                 </li>
               ))}
             </ul>
