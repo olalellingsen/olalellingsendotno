@@ -34,11 +34,36 @@ export default async function page() {
 
       <br />
       <h2>Previous concerts</h2>
-      <ul>
-        {pastConcerts.map((concert) => (
-          <ConcertCard key={concert._id} concert={concert} upcoming={false} />
-        ))}
-      </ul>
+      {(() => {
+        const concertsByYear = pastConcerts.reduce(
+          (acc, concert) => {
+            const year = new Date(concert.date).getFullYear();
+            if (!acc[year]) acc[year] = [];
+            acc[year].push(concert);
+            return acc;
+          },
+          {} as Record<number, Concert[]>
+        );
+
+        const years = Object.keys(concertsByYear)
+          .map(Number)
+          .sort((a, b) => b - a);
+
+        return years.map((year) => (
+          <div key={year}>
+            <h3 className="mt-4 font-medium">{year}</h3>
+            <ul>
+              {concertsByYear[year].map((concert) => (
+                <ConcertCard
+                  key={concert._id}
+                  concert={concert}
+                  upcoming={false}
+                />
+              ))}
+            </ul>
+          </div>
+        ));
+      })()}
     </main>
   );
 }

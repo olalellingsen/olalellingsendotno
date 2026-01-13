@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Navbar() {
+  const pathname = usePathname();
   const [menuItems] = useState([
     { label: "Home", path: "/" },
     { label: "Projects", path: "/projects" },
@@ -33,9 +35,7 @@ function Navbar() {
     <header className="h-16 sm:h-20 p-2 sm:px-4 flex justify-between w-full">
       <Link href={"/"} className="hover:cursor-pointer">
         <h2>Ola Lømo Ellingsen</h2>
-        <p className={`p-0 text-sm -translate-y-3`}>
-          Trumpet player | Composer
-        </p>
+        <p className="text-sm -translate-y-3">Trumpet player | Composer</p>
       </Link>
       <nav>
         <ul
@@ -45,7 +45,9 @@ function Navbar() {
           {menuItems.map((item) => (
             <Link
               href={item.path}
-              className={`hover:text-foreground`}
+              className={`hover:text-foreground ${
+                pathname === item.path && "border-b border-foreground/60"
+              }`}
               key={item.label}
             >
               {item.label}
@@ -70,7 +72,9 @@ function Navbar() {
                 <Link
                   key={item.label}
                   href={item.path}
-                  className="hover:font-medium text-center"
+                  className={`hover:font-medium text-center ${
+                    pathname === item.path && "underline underline-offset-4"
+                  }`}
                   onClick={closeMenu}
                 >
                   {item.label}

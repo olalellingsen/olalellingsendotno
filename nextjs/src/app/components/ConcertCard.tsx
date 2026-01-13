@@ -13,10 +13,15 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
       className="
         border-b border-foreground/20 py-4
         grid lg:grid-cols-10 lg:items-center
+        relative
       "
     >
       <div className="font-medium">
-        {new Date(concert.date).toLocaleDateString()}
+        {new Date(concert.date).toLocaleDateString("en-GB", {
+          weekday: "short",
+          day: "2-digit",
+          month: "short",
+        })}
       </div>
 
       <div className="text-gray-500">
@@ -40,7 +45,7 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
       {concert.ticketLink && upcoming && (
         <Button
           size="sm"
-          className="justify-self-end absolute lg:relative"
+          className="absolute top-4 right-2 lg:relative lg:top-0 lg:right-0 lg:justify-self-end"
           href={concert.ticketLink}
         >
           Tickets
