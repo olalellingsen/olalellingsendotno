@@ -45,7 +45,7 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
       {concert.ticketLink && upcoming && (
         <Button
           size="sm"
-          className="absolute top-4 right-2 lg:relative lg:top-0 lg:right-0 lg:justify-self-end"
+          className="absolute top-5 right-2 lg:relative lg:top-0 lg:right-0 lg:justify-self-end"
           href={concert.ticketLink}
         >
           Tickets
