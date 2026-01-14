@@ -9,10 +9,18 @@ import { ConcertCard } from "../components/ConcertCard";
 
 export default async function page() {
   const upcomingConcerts = await client.fetch<Concert[]>(
-    UPCOMING_CONCERTS_QUERY
+    UPCOMING_CONCERTS_QUERY,
+    {},
+    { next: { revalidate: 60 } }
   );
 
-  const pastConcerts = await client.fetch<Concert[]>(PREVIOUS_CONCERTS_QUERY);
+  const pastConcerts = await client.fetch<Concert[]>(
+    PREVIOUS_CONCERTS_QUERY,
+    {},
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   return (
     <main className="content">

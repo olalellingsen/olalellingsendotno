@@ -7,7 +7,11 @@ import InstagramComponent from "./components/InstagramComponent";
 import Button from "./components/Button";
 
 export default async function IndexPage() {
-  const home = await client.fetch<HomePage>(HOME_QUERY);
+  const home = await client.fetch<HomePage>(
+    HOME_QUERY,
+    {},
+    { next: { revalidate: 60 } }
+  );
 
   return (
     <article className="content flex flex-col items-center">
@@ -19,7 +23,7 @@ export default async function IndexPage() {
           height={400}
         />
       )}
-      <section className="w-full max-w-3xl space-y-8">
+      <section className="w-full max-w-3xl mt-4 space-y-8">
         <PortableTextSection
           content={{ _type: "richText", content: home.richText }}
         />

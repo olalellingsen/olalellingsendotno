@@ -12,6 +12,16 @@ import { ConcertCard } from "@/app/components/ConcertCard";
 import Link from "next/link";
 import PortableTextSection from "@/app/components/PortableTextSection";
 
+export async function generateStaticParams() {
+  const projects = await client.fetch<{ slug: string }[]>(
+    `*[_type == "project"]{ "slug": slug.current }`
+  );
+
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
 export default async function page({
   params,
 }: {
