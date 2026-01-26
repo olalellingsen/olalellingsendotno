@@ -6,15 +6,15 @@ import {
   PROJECT_UPCOMING_CONCERTS_QUERY,
 } from "@/app/queries";
 import Image from "next/image";
-import { Album, Concert, Project } from "../../types";
+import { Album, Concert, Project } from "../../../types";
 import Button from "../../components/Button";
-import { ConcertCard } from "@/app/components/ConcertCard";
+import { ConcertCard } from "../../components/ConcertCard";
 import Link from "next/link";
-import PortableTextSection from "@/app/components/PortableTextSection";
+import PortableTextSection from "../../components/PortableTextSection";
 
 export async function generateStaticParams() {
   const projects = await client.fetch<{ slug: string }[]>(
-    `*[_type == "project"]{ "slug": slug.current }`
+    `*[_type == "project"]{ "slug": slug.current }`,
   );
 
   return projects.map((project) => ({
@@ -34,7 +34,7 @@ export default async function page({
   }
   const upcomingConcerts = await client.fetch<Concert[]>(
     PROJECT_UPCOMING_CONCERTS_QUERY,
-    { projectId: project._id }
+    { projectId: project._id },
   );
 
   const projectAlbums = await client.fetch<Album[]>(PROJECT_ALBUMS_QUERY, {

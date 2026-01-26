@@ -4,7 +4,7 @@ import {
   PREVIOUS_CONCERTS_QUERY,
   UPCOMING_CONCERTS_QUERY,
 } from "@/app/queries";
-import { Concert } from "../types";
+import { Concert } from "../../types";
 import { ConcertCard } from "../components/ConcertCard";
 
 export default async function page() {

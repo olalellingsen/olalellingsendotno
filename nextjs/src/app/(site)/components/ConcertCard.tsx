@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import { Concert } from "../types";
+import { Concert } from "../../types";
 
 interface ConcertCardProps {
   concert: Concert;

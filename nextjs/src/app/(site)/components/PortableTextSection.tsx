@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { urlForImage } from "@/sanity/client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import { RichTextBlock } from "../types";
+import { RichTextBlock } from "../../types";
 import Button from "./Button";
 import { ExternalLink } from "lucide-react";
 

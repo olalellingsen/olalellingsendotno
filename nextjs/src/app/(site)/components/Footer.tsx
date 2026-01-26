@@ -1,7 +1,7 @@
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import React from "react";
-import type { Footer } from "../types";
+import type { Footer } from "../../types";
 import {
   Instagram,
   Facebook,

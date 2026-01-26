@@ -1,8 +1,8 @@
 import { client, urlForImage } from "@/sanity/client";
 import React from "react";
-import { Album } from "../types";
+import { Album } from "../../types";
 import Image from "next/image";
-import { ALBUMS_QUERY } from "../queries";
+import { ALBUMS_QUERY } from "../../queries";
 import Button from "../components/Button";
 import Link from "next/link";
 

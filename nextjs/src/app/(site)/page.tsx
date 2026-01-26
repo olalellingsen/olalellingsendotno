@@ -1,7 +1,7 @@
-import { HOME_QUERY } from "./queries";
-import { client, urlForImage } from "../sanity/client";
+import { HOME_QUERY } from "../queries";
+import { client, urlForImage } from "../../sanity/client";
 import Image from "next/image";
-import { HomePage } from "./types";
+import { HomePage } from "../types";
 import PortableTextSection from "./components/PortableTextSection";
 import InstagramComponent from "./components/InstagramComponent";
 import Button from "./components/Button";

@@ -1,7 +1,7 @@
 import React from "react";
 import { client } from "@/sanity/client";
 import { PROJECTS_QUERY } from "@/app/queries";
-import { Project } from "../types";
+import { Project } from "../../types";
 import Image from "next/image";
 import { urlFor } from "@/sanity/image";
 import Link from "next/link";
