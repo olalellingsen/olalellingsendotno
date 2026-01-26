@@ -17,7 +17,7 @@ export default async function page() {
         {albums.map((album) => (
           <li
             key={album._id}
-            className="min-w-9/10 sm:min-w-2/5 snap-start group *:transition-opacity *:duration-500 relative"
+            className="min-w-9/10 sm:min-w-2/5 snap-start group *:transition-opacity *:duration-500"
           >
             {album.coverArt && (
               <Link
@@ -30,12 +30,28 @@ export default async function page() {
                   alt={album.title}
                   width={400}
                   height={400}
-                  className="w-full group-hover:opacity-60 transition-opacity duration-300"
+                  className="w-full group-hover:opacity-70 transition-opacity duration-300 rounded-2xl"
                 />
               </Link>
             )}
             <div className="p-4">
               <h3>{album.title}</h3>
+
+              <Button
+                href={album.streamingLink || "#"}
+                variant="link"
+                className="group-hover:no-underline"
+              >
+                Listen Here
+              </Button>
+              <p>
+                Released:{" "}
+                {new Date(album.releaseDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </p>
               <p>
                 {album.artist ? (
                   <Button
@@ -48,17 +64,6 @@ export default async function page() {
                   album.otherArtist
                 )}
               </p>
-              <p>
-                Released:{" "}
-                {new Date(album.releaseDate).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </p>
-              <Button href={album.streamingLink || "#"} variant="link" className="group-hover:no-underline">
-                Listen Here
-              </Button>
             </div>
           </li>
         ))}

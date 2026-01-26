@@ -48,7 +48,7 @@ export default function Button({
     baseClasses,
     variantClasses,
     sizeClasses,
-    className
+    className,
   );
 
   // If href is provided, render as Link or anchor
@@ -67,7 +67,7 @@ export default function Button({
     }
 
     return (
-      <Link href={href} target="_blank" className={combinedClasses}>
+      <Link href={href} className={combinedClasses}>
         {children}
       </Link>
     );

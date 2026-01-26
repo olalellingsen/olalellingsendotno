@@ -27,7 +27,7 @@ export default async function page() {
                   alt={project.title}
                   width={1200}
                   height={800}
-                  className="aspect-3/4 lg:aspect-square object-cover rounded-2xl group-hover:opacity-80 transition-opacity duration-300"
+                  className="aspect-3/4 lg:aspect-square object-cover rounded-2xl group-hover:opacity-70 transition-opacity duration-300"
                 />
               )}
 
