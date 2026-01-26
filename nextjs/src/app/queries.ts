@@ -60,7 +60,7 @@ export const PROJECT_ALBUMS_QUERY = groq`*[_type == "albums" && artist._ref == $
   streamingLink
 }`;
 
-export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= now()] | order(date asc){
+export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc){
   _id,
   band,
   date,
@@ -72,7 +72,7 @@ export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= now
   ticketLink,
 }`;
 
-export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < now()] | order(date desc){
+export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < $today] | order(date desc){
     _id,
     band,
     date,

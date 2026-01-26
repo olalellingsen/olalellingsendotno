@@ -4,6 +4,7 @@ import { Album } from "../types";
 import Image from "next/image";
 import { ALBUMS_QUERY } from "../queries";
 import Button from "../components/Button";
+import Link from "next/link";
 
 export default async function page() {
   const albums = await client.fetch<Album[]>(ALBUMS_QUERY);
@@ -16,16 +17,22 @@ export default async function page() {
         {albums.map((album) => (
           <li
             key={album._id}
-            className="min-w-9/10 sm:min-w-2/5 snap-start group *:transition-opacity *:duration-500"
+            className="min-w-9/10 sm:min-w-2/5 snap-start group *:transition-opacity *:duration-500 relative"
           >
             {album.coverArt && (
-              <Image
-                src={urlForImage(album.coverArt).url()}
-                alt={album.title}
-                width={400}
-                height={400}
-                className="w-full"
-              />
+              <Link
+                href={album.streamingLink || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={urlForImage(album.coverArt).url()}
+                  alt={album.title}
+                  width={400}
+                  height={400}
+                  className="w-full group-hover:opacity-60 transition-opacity duration-300"
+                />
+              </Link>
             )}
             <div className="p-4">
               <h3>{album.title}</h3>
@@ -49,7 +56,7 @@ export default async function page() {
                   year: "numeric",
                 })}
               </p>
-              <Button href={album.streamingLink || "#"} variant="link">
+              <Button href={album.streamingLink || "#"} variant="link" className="group-hover:no-underline">
                 Listen Here
               </Button>
             </div>

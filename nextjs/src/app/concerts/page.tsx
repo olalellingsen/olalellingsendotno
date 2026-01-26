@@ -8,25 +8,22 @@ import { Concert } from "../types";
 import { ConcertCard } from "../components/ConcertCard";
 
 export default async function page() {
-  const upcomingConcerts = await client.fetch<Concert[]>(
-    UPCOMING_CONCERTS_QUERY,
-  );
+  const today = new Date().toISOString().split("T")[0];
+  const upcoming = await client.fetch<Concert[]>(UPCOMING_CONCERTS_QUERY, {
+    today,
+  });
 
-  const pastConcerts = await client.fetch<Concert[]>(
-    PREVIOUS_CONCERTS_QUERY,
-    {},
-    {
-      next: { revalidate: 60 },
-    },
-  );
+  const previous = await client.fetch<Concert[]>(PREVIOUS_CONCERTS_QUERY, {
+    today,
+  });
 
   return (
     <main className="content">
-      {upcomingConcerts.length > 0 && (
+      {upcoming.length > 0 && (
         <section>
           <h2>Upcoming concerts</h2>
           <ul>
-            {upcomingConcerts.map((concert) => (
+            {upcoming.map((concert) => (
               <ConcertCard
                 key={concert._id}
                 concert={concert}
@@ -41,7 +38,7 @@ export default async function page() {
       <br />
       <h2>Previous concerts</h2>
       {(() => {
-        const concertsByYear = pastConcerts.reduce(
+        const concertsByYear = previous.reduce(
           (acc, concert) => {
             const year = new Date(concert.date).getFullYear();
             if (!acc[year]) acc[year] = [];
