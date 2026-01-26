@@ -10,8 +10,6 @@ import { ConcertCard } from "../components/ConcertCard";
 export default async function page() {
   const upcomingConcerts = await client.fetch<Concert[]>(
     UPCOMING_CONCERTS_QUERY,
-    {},
-    { next: { revalidate: 60 } }
   );
 
   const pastConcerts = await client.fetch<Concert[]>(
@@ -19,7 +17,7 @@ export default async function page() {
     {},
     {
       next: { revalidate: 60 },
-    }
+    },
   );
 
   return (
@@ -50,7 +48,7 @@ export default async function page() {
             acc[year].push(concert);
             return acc;
           },
-          {} as Record<number, Concert[]>
+          {} as Record<number, Concert[]>,
         );
 
         const years = Object.keys(concertsByYear)

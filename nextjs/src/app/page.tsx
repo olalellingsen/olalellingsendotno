@@ -7,11 +7,7 @@ import InstagramComponent from "./components/InstagramComponent";
 import Button from "./components/Button";
 
 export default async function IndexPage() {
-  const home = await client.fetch<HomePage>(
-    HOME_QUERY,
-    {},
-    { next: { revalidate: 60 } }
-  );
+  const home = await client.fetch<HomePage>(HOME_QUERY);
 
   return (
     <article className="content flex flex-col items-center">

@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   title: "Ola Lømo Ellingsen",
 };
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 export default function RootLayout({
   children,
 }: Readonly<{
