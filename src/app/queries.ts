@@ -81,6 +81,18 @@ export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < $tod
     }
   }`;
 
+export const NEXT_CONCERT_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc)[0]{
+  _id,
+  band,
+  date,
+  time,
+  venue->{
+    name,
+    locationLink
+  },
+  ticketLink,
+}`;
+
 export const HOME_QUERY = groq`*[_type == "home"][0]{
   _id,
   title,
