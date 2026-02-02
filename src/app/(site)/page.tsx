@@ -5,6 +5,7 @@ import { HomePage } from "../types";
 import PortableTextSection from "./components/PortableTextSection";
 import InstagramComponent from "./components/InstagramComponent";
 import Button from "./components/Button";
+import NextConcert from "./components/NextConcert";
 
 export default async function IndexPage() {
   const home = await client.fetch<HomePage>(HOME_QUERY);
@@ -20,6 +21,7 @@ export default async function IndexPage() {
         />
       )}
       <section className="w-full max-w-3xl mt-4 space-y-8">
+        <NextConcert />
         <PortableTextSection
           content={{ _type: "richText", content: home.richText }}
         />

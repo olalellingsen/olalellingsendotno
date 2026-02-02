@@ -43,6 +43,9 @@ export default async function page({
 
   return (
     <main className="content">
+      <Button href="/projects" variant="link" className="mb-4">
+        &larr; Back to projects
+      </Button>
       {project.image && (
         <Image
           src={urlForImage(project.image).url()}

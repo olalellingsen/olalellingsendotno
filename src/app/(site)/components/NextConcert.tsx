@@ -1,9 +1,7 @@
-import { defineQuery } from "groq";
 import React from "react";
 import { Concert } from "@/app/types";
 import { client } from "@/sanity/client";
 import { NEXT_CONCERT_QUERY } from "@/app/queries";
-import { ConcertCard } from "./ConcertCard";
 import Button from "./Button";
 
 const today = new Date().toISOString().split("T")[0];
