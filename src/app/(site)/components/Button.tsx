@@ -38,7 +38,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded-full font-medium h-max w-max hover:cursor-pointer block";
+    "inline-flex items-center justify-center rounded-full font-medium h-max w-max hover:cursor-pointer block mb-4";
 
   const variantClasses = buttonVariants[variant];
   const sizeClasses =

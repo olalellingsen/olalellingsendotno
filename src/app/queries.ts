@@ -105,14 +105,24 @@ export const HOME_QUERY = groq`*[_type == "home"][0]{
 }`;
 
 export const ALBUMS_QUERY = groq`*[_type == "albums"] | order(releaseDate desc) {
+  _id,
+  title,
+  artist->{
+    title,
+    slug
+  },
+  otherArtist,
+  releaseDate,
+  coverArt,
+  streamingLink
+}`;
+
+export const NEWS_QUERY = groq`*[_type == "news" && publishedAt <= $today] | order(publishedAt desc){
     _id,
     title,
-    artist->{
-      title,
-      slug
-    },
-    otherArtist,
-    releaseDate,
-    coverArt,
-    streamingLink
-  }`;
+    slug,
+    publishedAt,
+    image,
+    excerpt,
+    content
+}`;
