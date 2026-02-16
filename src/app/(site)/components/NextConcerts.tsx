@@ -1,21 +1,20 @@
 import React from "react";
+import { Concert } from "@/app/types";
+import { client } from "@/sanity/client";
+import { NEXT_CONCERT_QUERY } from "@/app/queries";
 import Button from "./Button";
-import { Concert } from "../../types";
 
-interface ConcertCardProps {
-  concert: Concert;
-  upcoming: boolean;
-}
+const today = new Date().toISOString().split("T")[0];
 
-export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
+export default async function NextConcerts() {
+  const concert = await client.fetch<Concert>(NEXT_CONCERT_QUERY, {
+    today,
+  });
+  if (!concert) {
+    return null;
+  }
   return (
-    <li
-      className="
-        border-b border-foreground/20 py-4
-        grid lg:grid-cols-10 lg:items-center
-        relative
-      "
-    >
+    <div className="p-4 relative border border-foreground/50 rounded-2xl">
       <div className="font-medium">
         {new Date(concert.date).toLocaleDateString("en-GB", {
           weekday: "short",
@@ -28,13 +27,11 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
         {concert.time ? `${concert.time}` : ""}
       </div>
 
-      <div className="font-medium lg:col-span-5 mr-20 lg:mr-0">
-        {concert.band}
-      </div>
+      <div className="font-medium mr-20">{concert.band}</div>
 
-      <div className="lg:col-span-2">
+      <div>
         {concert.venue?.locationLink ? (
-          <Button href={concert.venue.locationLink} variant="link">
+          <Button href={concert.venue.locationLink} variant="link" external>
             {concert.venue.name}
           </Button>
         ) : (
@@ -42,16 +39,16 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
         )}
       </div>
 
-      {concert.ticketLink && upcoming && (
+      {concert.ticketLink && (
         <Button
           size="sm"
-          className="absolute top-5 right-2 lg:relative lg:top-0 lg:right-0 lg:justify-self-end"
+          className="absolute top-5 right-4"
           href={concert.ticketLink}
           external
         >
           Tickets
         </Button>
       )}
-    </li>
+    </div>
   );
-};
+}

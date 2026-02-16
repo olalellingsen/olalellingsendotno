@@ -79,3 +79,21 @@ export type Footer = {
     url: string;
   }>;
 };
+
+export type NewsItem = {
+  _id: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  publishedAt: string; // ISO date string
+  image?: SanityImageObject;
+  excerpt: string;
+  content: Array<{
+    _type: string;
+    children: Array<{
+      _type: string;
+      text: string;
+    }>;
+  }>;
+};

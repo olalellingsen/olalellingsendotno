@@ -43,7 +43,7 @@ export default async function page({
 
   return (
     <main className="content">
-      <Button href="/projects" variant="link" className="mb-4">
+      <Button href="/projects" variant="link">
         &larr; Back to projects
       </Button>
       {project.image && (
@@ -88,7 +88,7 @@ export default async function page({
               {projectAlbums.map((album) => (
                 <li key={album._id} className="group">
                   <Link
-                    href={album.streamingLink}
+                    href={album.streamingLink || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
