@@ -31,7 +31,7 @@ export default async function NextConcerts() {
 
       <div>
         {concert.venue?.locationLink ? (
-          <Button href={concert.venue.locationLink} variant="link">
+          <Button href={concert.venue.locationLink} variant="link" external>
             {concert.venue.name}
           </Button>
         ) : (
@@ -44,6 +44,7 @@ export default async function NextConcerts() {
           size="sm"
           className="absolute top-5 right-4"
           href={concert.ticketLink}
+          external
         >
           Tickets
         </Button>

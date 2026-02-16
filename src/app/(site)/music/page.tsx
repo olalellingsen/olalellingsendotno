@@ -37,15 +37,17 @@ export default async function page() {
             <div className="p-4">
               <h3>{album.title}</h3>
 
-              <Button
-                href={album.streamingLink || "#"}
-                variant="link"
-                className="group-hover:no-underline"
-              >
-                Listen Here
-              </Button>
+              {album.streamingLink && (
+                <Button
+                  href={album.streamingLink}
+                  variant="link"
+                  className="group-hover:no-underline"
+                >
+                  Listen Here
+                </Button>
+              )}
               <p>
-                Released:{" "}
+                Release:{" "}
                 {new Date(album.releaseDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "short",

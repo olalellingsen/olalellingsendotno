@@ -88,7 +88,7 @@ export default async function page({
               {projectAlbums.map((album) => (
                 <li key={album._id} className="group">
                   <Link
-                    href={album.streamingLink}
+                    href={album.streamingLink || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

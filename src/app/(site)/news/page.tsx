@@ -1,5 +1,3 @@
-import { client } from "@/sanity/client";
-import { NewsItem } from "@/app/types";
 import React from "react";
 import NewsList from "../components/NewsList";
 

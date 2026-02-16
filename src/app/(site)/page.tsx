@@ -37,7 +37,7 @@ export default async function IndexPage() {
         />
       </section>
 
-      <section className="bg-zinc-900 p-6 -mx-2">
+      <section className="bg-sky-950 p-6 -mx-2">
         <h2>
           <Link href="/news">News</Link>
         </h2>
