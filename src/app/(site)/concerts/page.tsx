@@ -18,7 +18,7 @@ export default async function page() {
   });
 
   return (
-    <main className="content">
+    <article className="content">
       {upcoming.length > 0 && (
         <section>
           <h2>Upcoming concerts</h2>
@@ -67,6 +67,6 @@ export default async function page() {
           </div>
         ));
       })()}
-    </main>
+    </article>
   );
 }

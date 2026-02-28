@@ -43,7 +43,7 @@ export default async function page({
 
   return (
     <main className="content">
-      <Button href="/projects" variant="link">
+      <Button href="/projects" variant="link" className="mb-2">
         &larr; Back to projects
       </Button>
       {project.image && (
@@ -92,7 +92,6 @@ export default async function page({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <p className="font-bold sm:text-lg">{album.title}</p>
                     {album.coverArt && (
                       <Image
                         src={urlForImage(album.coverArt).url()}
@@ -102,6 +101,14 @@ export default async function page({
                         className="group-hover:opacity-80 transition"
                       />
                     )}
+                    <h3 className="text-center">{album.title}</h3>
+                    <p className="text-center">
+                      {new Date(album.releaseDate).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
                   </Link>
                 </li>
               ))}

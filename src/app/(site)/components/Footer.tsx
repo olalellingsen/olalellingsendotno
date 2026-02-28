@@ -88,7 +88,7 @@ export default async function Footer() {
 
       <div className="text-center mb-2 mt-8 text-gray-400">
         <Link href="/studio/" target="_blank">
-          Log in
+          Studio
         </Link>
         <p className=" ">© {new Date().getFullYear()} Ola Lømo Ellingsen</p>
       </div>

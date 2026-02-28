@@ -39,7 +39,7 @@ function Navbar() {
       </Link>
       <nav>
         <ul
-          className={`hidden md:flex w-max gap-10 m-4 text-lg hover:text-stone-400
+          className={`hidden md:flex w-max gap-10 m-4 text-lg hover:text-gray-400
           } `}
         >
           {menuItems.map((item) => (

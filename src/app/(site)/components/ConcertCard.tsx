@@ -24,7 +24,7 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
         })}
       </div>
 
-      <div className="text-gray-500">
+      <div className="text-gray-400">
         {concert.time ? `${concert.time}` : ""}
       </div>
 
@@ -38,7 +38,7 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
             {concert.venue.name}
           </Button>
         ) : (
-          <p>{concert.venue?.name}</p>
+          <span>{concert.venue?.name}</span>
         )}
       </div>
 

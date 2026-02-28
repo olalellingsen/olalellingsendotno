@@ -20,6 +20,7 @@ export default async function IndexPage() {
           alt="Home Image"
           width={600}
           height={400}
+          className="w-full max-w-3xl"
         />
       )}
 
