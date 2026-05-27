@@ -1,9 +1,8 @@
 import { Album } from "@/app/types";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Button from "./Button";
-import { urlForImage } from "@/sanity/client";
+import SanityImage from "./SanityImage";
 import SliderItem from "./SliderItem";
 
 export default function AlbumCard({ album }: { album: Album }) {
@@ -15,11 +14,12 @@ export default function AlbumCard({ album }: { album: Album }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            src={urlForImage(album.coverArt).url()}
+          <SanityImage
+            image={album.coverArt}
             alt={album.title}
-            width={400}
-            height={400}
+            width={600}
+            height={600}
+            sizes="(max-width: 640px) 50vw, 240px"
             className="w-full group-hover:opacity-70 transition-opacity duration-300 rounded-2xl"
           />
         </Link>

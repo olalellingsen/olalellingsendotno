@@ -1,6 +1,7 @@
 import { albums } from "./albums";
 import { concerts } from "./concerts";
 import { footerSchema } from "./footer";
+import { gallery } from "./gallery";
 import { home } from "./home";
 import { news } from "./news";
 import { projects } from "./projects";
@@ -14,4 +15,5 @@ export const schemaTypes = [
   concerts,
   venues,
   footerSchema,
+  gallery,
 ];

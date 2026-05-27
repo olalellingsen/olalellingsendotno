@@ -1,7 +1,7 @@
 import { HOME_QUERY } from "../queries";
-import { client, urlForImage } from "../../sanity/client";
-import Image from "next/image";
+import { client } from "../../sanity/client";
 import { HomePage } from "../types";
+import SanityImage from "./components/SanityImage";
 import PortableTextSection from "./components/PortableTextSection";
 import InstagramComponent from "./components/InstagramComponent";
 import Button from "./components/Button";
@@ -15,12 +15,14 @@ export default async function IndexPage() {
   return (
     <article className="flex flex-col items-center space-y-8 p-2">
       {home.image && (
-        <Image
-          src={urlForImage(home?.image).url()}
-          alt="Home Image"
-          width={600}
-          height={400}
-          className="w-full max-w-3xl"
+        <SanityImage
+          image={home.image}
+          alt={home.title || "Home"}
+          width={1200}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="w-full max-w-3xl h-auto"
+          priority
         />
       )}
 

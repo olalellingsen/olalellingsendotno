@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { urlForImage } from "@/sanity/client";
+import SanityImage from "./SanityImage";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { RichTextBlock } from "../../types";
 import Button from "./Button";
@@ -25,11 +24,12 @@ const stylings: PortableTextComponents = {
   types: {
     image: ({ value }: { value: ImageValue }) => (
       <figure className="my-6">
-        <Image
-          src={urlForImage(value).url()}
+        <SanityImage
+          image={value}
           alt={value.alt || ""}
-          width={800}
-          height={600}
+          width={1200}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 768px"
           className="aspect-square sm:aspect-video object-cover w-full"
         />
         {value.caption && <figcaption>{value.caption}</figcaption>}
@@ -84,7 +84,7 @@ export default function PortableTextSection({
   const blocks = Array.isArray(content) ? content : content.content;
 
   return (
-    <div className="prose lg:prose-lg max-w-none prose-headings:text-foreground prose-headings:font-light prose-p:text-foreground prose-blockquote:text-foreground prose-strong:text-foreground">
+    <div className="prose lg:prose-lg max-w-none prose-headings:text-foreground prose-headings:font-light prose-p:my-3 prose-li:my-0 prose-ul:-mt-2 prose-p:text-foreground prose-blockquote:text-foreground prose-strong:text-foreground">
       <PortableText value={blocks} components={stylings} />
     </div>
   );

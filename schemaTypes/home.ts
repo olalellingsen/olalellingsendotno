@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const home = defineType({
   name: "home",
-  title: "Home Page",
+  title: "Home",
   type: "document",
   fields: [
     defineField({
@@ -35,33 +35,11 @@ export const home = defineType({
         },
       ],
     }),
-    defineField({
-      name: "socialLinks",
-      title: "Social Links",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            {
-              name: "platform",
-              title: "Platform",
-              type: "string",
-            },
-            {
-              name: "url",
-              title: "URL",
-              type: "url",
-            },
-          ],
-        },
-      ],
-    }),
   ],
   preview: {
     prepare() {
       return {
-        title: "Home Page",
+        title: "Home",
       };
     },
   },

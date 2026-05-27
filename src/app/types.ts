@@ -80,6 +80,35 @@ export type Footer = {
   }>;
 };
 
+// A single image inside the gallery's `images` array. Mirrors the shape
+// returned by GALLERY_QUERY (asset is expanded so we can use metadata.lqip
+// and metadata.dimensions for blur placeholders + intrinsic sizing).
+export type GalleryImage = {
+  _key: string;
+  photographer?: string;
+  alt?: string;
+  image: SanityImageObject & {
+    asset?: {
+      _id: string;
+      url: string;
+      altText?: string;
+      metadata?: {
+        lqip?: string;
+        dimensions?: {
+          width: number;
+          height: number;
+          aspectRatio: number;
+        };
+      };
+    };
+  };
+};
+
+export type Gallery = {
+  _id: string;
+  images: GalleryImage[];
+};
+
 export type NewsItem = {
   _id: string;
   title: string;

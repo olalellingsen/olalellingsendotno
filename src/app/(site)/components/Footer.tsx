@@ -25,7 +25,7 @@ const platformIcons: Record<string, LucideIcon> = {
 };
 
 export default async function Footer() {
-  const footerData = await client.fetch<Footer>(`*[_type == "footer"][0]{
+  const footerData = await client.fetch<Footer>(`*[_id == "footer"][0]{
     contactEmail,
     contactPhone,
     socialLinks[]{
