@@ -12,6 +12,7 @@ function Navbar() {
     { label: "Home", path: "/" },
     { label: "Projects", path: "/projects" },
     { label: "Music", path: "/music" },
+    { label: "Gallery", path: "/gallery" },
     { label: "Concerts", path: "/concerts" },
   ]);
 

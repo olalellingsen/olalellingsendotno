@@ -42,6 +42,8 @@ export type Album = {
       current: string;
     };
   };
+  label?: string;
+  labelLink?: string;
   otherArtist?: string;
   releaseDate: string;
   coverArt?: SanityImageSource;

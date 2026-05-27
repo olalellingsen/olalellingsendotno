@@ -12,8 +12,7 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   const open = useCallback((index: number) => setActiveIndex(index), []);
   const close = useCallback(() => setActiveIndex(null), []);
   const next = useCallback(
-    () =>
-      setActiveIndex((i) => (i === null ? null : (i + 1) % images.length)),
+    () => setActiveIndex((i) => (i === null ? null : (i + 1) % images.length)),
     [images.length],
   );
   const prev = useCallback(
@@ -44,12 +43,11 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      {/* Masonry grid using CSS columns (no JS layout needed) */}
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-3 sm:gap-4 [column-fill:_balance]">
+      <div className="columns-2 lg:columns-3 gap-2 [column-fill:_balance]">
         {images.map((item, index) => (
           <figure
             key={item._key}
-            className="mb-3 sm:mb-4 break-inside-avoid cursor-zoom-in group"
+            className="mb-2 break-inside-avoid cursor-zoom-in group"
             onClick={() => open(index)}
           >
             <SanityImage
@@ -57,10 +55,7 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
               alt={item.alt ?? item.photographer ?? "Gallery image"}
               width={
                 item.image.asset?.metadata?.dimensions?.width
-                  ? Math.min(
-                      item.image.asset.metadata.dimensions.width,
-                      900,
-                    )
+                  ? Math.min(item.image.asset.metadata.dimensions.width, 900)
                   : 900
               }
               height={

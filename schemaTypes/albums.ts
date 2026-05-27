@@ -29,6 +29,16 @@ export const albums = defineType({
       title: "Release Date",
     }),
     defineField({
+      name: "label",
+      type: "string",
+      title: "Label",
+    }),
+    defineField({
+      name: "labelLink",
+      type: "url",
+      title: "Label Link",
+    }),
+    defineField({
       name: "coverArt",
       type: "image",
       title: "Cover Art",

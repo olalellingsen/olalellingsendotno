@@ -44,6 +44,18 @@ export default function AlbumCard({ album }: { album: Album }) {
           album.otherArtist
         )}
 
+        {album.label && album.labelLink && (
+          <p>
+            <Button
+              href={album.labelLink}
+              external
+              variant="link"
+              className="ml-2"
+            >
+              {album.label}
+            </Button>
+          </p>
+        )}
         {album.streamingLink && (
           <Button href={album.streamingLink} external className="my-2">
             Listen Here

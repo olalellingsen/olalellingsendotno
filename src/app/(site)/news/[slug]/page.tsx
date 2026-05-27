@@ -47,8 +47,7 @@ export default async function newsItem({
           />
         )}
         <div className="space-y-2">
-          <h1>{newsItem.title}</h1>
-          <p>
+          <p className="text-foreground/70">
             {new Date(newsItem.publishedAt).toLocaleDateString("en-GB", {
               weekday: "short",
               day: "2-digit",
@@ -56,6 +55,7 @@ export default async function newsItem({
               year: "numeric",
             })}
           </p>
+          <h1>{newsItem.title}</h1>
           <p className="font-semibold max-w-xl">{newsItem.excerpt}</p>
           <PortableTextSection
             content={{ _type: "richText", content: newsItem.content }}

@@ -112,6 +112,8 @@ export const ALBUMS_QUERY = groq`*[_type == "albums"] | order(releaseDate desc) 
     title,
     slug
   },
+  label,
+  labelLink,
   otherArtist,
   releaseDate,
   coverArt ${IMAGE_FRAGMENT},

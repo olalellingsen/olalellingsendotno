@@ -13,20 +13,20 @@ export default async function IndexPage() {
   const home = await client.fetch<HomePage>(HOME_QUERY);
 
   return (
-    <article className="flex flex-col items-center space-y-8 p-2">
+    <article className="flex flex-col items-center space-y-2 md:space-y-4">
       {home.image && (
         <SanityImage
           image={home.image}
-          alt={home.title || "Home"}
+          height={1500}
           width={1200}
-          height={800}
+          alt={home.title || "Home"}
           sizes="(max-width: 768px) 100vw, 768px"
-          className="w-full max-w-3xl h-auto"
+          className="w-full max-w-3xl sm:aspect-square object-cover"
           priority
         />
       )}
 
-      <section className="max-w-3xl w-full">
+      <section className="max-w-3xl w-full p-2">
         <h2>Upcoming concerts</h2>
         <NextConcerts />
         <Button href="/concerts" variant="link" className="mt-2">
@@ -34,24 +34,24 @@ export default async function IndexPage() {
         </Button>
       </section>
 
-      <section className="max-w-3xl w-full">
+      <section className="max-w-3xl w-full p-2">
         <PortableTextSection
           content={{ _type: "richText", content: home.richText }}
         />
       </section>
 
-      <section className="bg-sky-950 p-6 -mx-2">
+      <section className="bg-sky-950 p-2 sm:p-6">
         <h2>
           <Link href="/news">News</Link>
         </h2>
         <NewsList maxItems={3} />
       </section>
 
-      <section className="w-full max-w-3xl">
+      <section className="w-full max-w-3xl p-2">
         <InstagramComponent />
       </section>
 
-      <section className="max-w-3xl w-full">
+      <section className="max-w-3xl w-full p-2">
         <iframe
           className="w-full h-[480px]"
           data-testid="embed-iframe"
