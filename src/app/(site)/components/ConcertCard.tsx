@@ -34,7 +34,7 @@ export const ConcertCard = ({ concert, upcoming }: ConcertCardProps) => {
 
       <div className="lg:col-span-2">
         {concert.venue?.locationLink ? (
-          <Button href={concert.venue.locationLink} variant="link">
+          <Button href={concert.venue.locationLink} variant="link" external>
             {concert.venue.name}
           </Button>
         ) : (
