@@ -36,7 +36,7 @@ export const PROJECT_QUERY = groq`*[_type == "projects" && slug.current == $slug
   spotifyLink
 }`;
 
-export const PROJECT_UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && project._ref == $projectId && date >= now()] | order(date asc){
+export const PROJECT_UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && project._ref == $projectId && date >= now()] | order(date asc, time asc){
       _id,
       band,
       date,
@@ -61,7 +61,7 @@ export const PROJECT_ALBUMS_QUERY = groq`*[_type == "albums" && artist._ref == $
   streamingLink
 }`;
 
-export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc){
+export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc, time asc){
   _id,
   band,
   date,
@@ -73,7 +73,7 @@ export const UPCOMING_CONCERTS_QUERY = groq`*[_type == "concerts" && date >= $to
   ticketLink,
 }`;
 
-export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < $today] | order(date desc){
+export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < $today] | order(date desc, time asc){
     _id,
     band,
     date,
@@ -82,7 +82,7 @@ export const PREVIOUS_CONCERTS_QUERY = groq`*[_type == "concerts" && date < $tod
     }
   }`;
 
-export const NEXT_CONCERT_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc)[0]{
+export const NEXT_CONCERT_QUERY = groq`*[_type == "concerts" && date >= $today] | order(date asc, time asc)[0]{
   _id,
   band,
   date,
