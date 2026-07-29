@@ -14,7 +14,7 @@ export default async function NextConcerts() {
     return null;
   }
   return (
-    <div className="p-4 relative rounded-2xl bg-sky-950">
+    <div className="p-4 relative rounded-2xl bg-black/20">
       <div className="font-medium">
         {new Date(concert.date).toLocaleDateString("en-GB", {
           weekday: "short",
