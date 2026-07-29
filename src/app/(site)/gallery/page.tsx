@@ -3,10 +3,6 @@ import { GALLERY_QUERY } from "@/app/queries";
 import { Gallery } from "@/app/types";
 import GalleryClient from "./GalleryClient";
 
-export const metadata = {
-  title: "Gallery — Eskild Okkenhaug",
-};
-
 export default async function GalleryPage() {
   const data = await client.fetch<Gallery | null>(GALLERY_QUERY);
   const images = (data?.images ?? []).filter((i) => i?.image?.asset);
