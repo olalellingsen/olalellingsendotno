@@ -41,7 +41,7 @@ export default function AlbumCard({ album }: { album: Album }) {
             {album.artist.title}
           </Button>
         ) : (
-          album.otherArtist
+          <p>{album.otherArtist}</p>
         )}
 
         {album.label && album.labelLink && (
