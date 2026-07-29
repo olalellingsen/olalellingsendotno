@@ -2,7 +2,6 @@ import SanityImage from "./SanityImage";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { RichTextBlock } from "../../types";
 import Button from "./Button";
-import { ExternalLink } from "lucide-react";
 
 // Type for image values in portable text
 type ImageValue = {
@@ -69,7 +68,6 @@ const stylings: PortableTextComponents = {
         className="text-foreground inline-flex"
       >
         {children}
-        <ExternalLink className="ml-1 mt-1 size-4" />
       </Button>
     ),
   },
